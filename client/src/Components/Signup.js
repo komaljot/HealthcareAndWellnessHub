@@ -13,6 +13,24 @@ const changes=e=>{
     console.log(Value)
 }
 
+// const fun2=()=>{
+//     fetch('http://localhost:3000/register',{
+//       method:'POST',
+//       headers:{
+//         'Content-type':'application/json'
+//       },
+//       body:JSON.stringify(input)
+//     }).then(()=>{
+//       console.log('CHAL gya')
+//       navigate('/login')
+
+//     }).catch((err)=>{
+//       console.log(err,"errr")
+
+//     })
+
+//    }
+
     return(
         <div className='text-center my-5'>
             <h2 className='my-5'>Sign Up</h2>
@@ -33,7 +51,7 @@ const changes=e=>{
           <button>Submit</button>
           <br /><br />
 
-          <Link to="/Login">Login Page </Link>
+          <Link to="/login">Login Page </Link>
         </div>
     )
 }

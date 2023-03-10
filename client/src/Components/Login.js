@@ -24,7 +24,7 @@ const changeHandler=e=>{
             </form>
             <button>Login</button>
             <br /><br />
-            <Link to="/">Sign Up Page </Link>
+            <Link to="/signup">Sign Up Page </Link>
         </div>
     )
 }
