@@ -1,3 +1,4 @@
+require("dotenv").config()
 const  express=require('express')
 const mongoose = require('mongoose')
 const User = require('./models/users')
@@ -8,7 +9,7 @@ const app = express()
 
 app.use(bodyParser.json(),bodyParser.urlencoded({extended:true}))
 
-mongoose.connect('mongodb://gurmehar1553:gunnu123@cluster0.d5dls2w.mongodb.net/db_user').then(()=>{
+mongoose.connect(process.env.MONGODB_URL).then(()=>{
     console.log("Database connected")
 }).catch((e)=>{
     console.log(e)
@@ -52,7 +53,10 @@ app.post('/login', async (req,res) => {
 
 app.post('/signup',async (req,res)=>{
     const user = req.body
+    const cnt = await User.count({email:user.email})
+    console.log("count : ",cnt)
     const check = await User.findOne({email:user.email})
+    console.log(check)
     if(check){
         res.send('User already exists')
     }
