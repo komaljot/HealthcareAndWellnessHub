@@ -1,10 +1,18 @@
 import React from 'react'
-import Header from '../Components/Header'
+import Footer from '../Components/Footer'
+import HeroSection from '../Components/HeroSection'
+import Team from '../Components/Team'
+import Testimonial from '../Components/Testimonial'
+import WhyUs from '../Components/WhyUs'
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <HeroSection />
+      <WhyUs />
+      <Team />
+      <Testimonial />
+      <Footer />
     </>
   )
 }
