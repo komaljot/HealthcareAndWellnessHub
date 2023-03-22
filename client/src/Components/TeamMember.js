@@ -3,7 +3,7 @@ import React from 'react'
 export default function TeamMember({imgSrc}) {
   return (
     <>
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card card-styles shadow" style={{width: "18rem"}}>
             <img src={imgSrc} className="card-img-top" alt="..." />
             <div className="card-body">
                 <h3 className="card-title">Dr. Smith</h3>

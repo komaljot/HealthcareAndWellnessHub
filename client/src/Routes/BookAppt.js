@@ -1,9 +1,11 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from '../Components/Header';
 
 export default function BookAppt() {
   return (
     <>
+      <Header />
       <div className='p-5'>
         <h1 className='p-5 text-center'>Book Your Appointment</h1>
         <form className='ms-5'>
