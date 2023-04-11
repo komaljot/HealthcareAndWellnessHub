@@ -5,7 +5,7 @@ import Login from './Routes/Login'
 import Signup from './Routes/Signup'
 import Home from './Routes/Home'
 import AboutUs from './Routes/AboutUs'
-import ContactUs from './Routes/ContactUs'
+import ContactUs from './Routes/ContactUs/ContactUs'
 
 
 export default function App() {

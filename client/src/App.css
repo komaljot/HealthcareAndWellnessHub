@@ -1,10 +1,9 @@
 .hero{
-    background-image: url('../src/assets/HeroImage.jpg');
+    background-image: url('../src/assets/home1.jpg');
     height: 100vh;
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-position: center;
-    /* opacity: 0.8; */
     position: relative;
 }
 
@@ -19,13 +18,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* backdrop-filter: blur(10px); */
     background-color: rgba(0, 0, 0, 0.3);
 } 
 
 
 .header-nav{
-    background: transparent !important;
+    background: transparent  !important;
 }
 
 .nav-tab{
@@ -125,3 +123,20 @@
     border-radius: 0.8rem;
 }
 
+.head-appt{
+    background-color: #80cbc4;
+}
+
+.form-appt{
+    margin-left: 170px;
+}
+
+.login-bg{
+    background-color: rgb(128,203,196);
+    opacity: 0.5;
+}
+
+.appt-bg{
+    background-color: #E0F2F1;
+    overflow-x: hidden;
+}
