@@ -9,7 +9,6 @@ export default function BookAppt() {
     <>
       <div className='appt-bg'>
         <div className=' head-appt'>
-          <Header />
           <h1 className='p-5 text-center'>Book Your Appointment</h1>
         </div>
         <form className='form-appt'>

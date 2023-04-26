@@ -79,12 +79,12 @@ inputs.forEach(input => {
         // </div>
 		<div>
 			<img className="wave" src={wave}/>   
-        <div className="container">
+        <div className="containerkavya">
 		<div className="img">
         <img src={signUpImage} alt='img' />
 		</div>
 		<div className="login-content">
-			<form action="index.html">
+			<form action="index.html" className='formm'>
             <img src={signUpAvatar} alt='img' />
 				{/* <h3 className="title">Welcome</h3> */}
            		<div className="input-div one">
@@ -124,7 +124,7 @@ inputs.forEach(input => {
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" className="btn" value="Sign Up"/>
+            	<input type="submit" className="btnSign" value="Sign Up"/>
             </form>
         </div>
     </div>

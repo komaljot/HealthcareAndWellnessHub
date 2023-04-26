@@ -56,10 +56,10 @@ inputs.forEach(input => {
        <div>
         <img className="wave" src={wave} alt="img"/>
        
-        <div className="container">
+        <div className="containerkavya">
 		
 		<div className="login-content">
-			<form action="index.html">
+			<form action="index.html" className="formm">
 				<img src={signUpAvatar} alt="img"/>
 				<h3 className="title">Welcome</h3>
            		<div className="input-div one">
@@ -81,7 +81,7 @@ inputs.forEach(input => {
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
-            	<input type="submit" className="btn" value="Login"/>
+            	<input type="submit" className="btnSign" value="Login"/>
             </form>
         </div>
         
