@@ -1,38 +1,49 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import './SignUp.css';
 import signUpImage from '../assets/signUpImage.png'
 import signUpAvatar from '../assets/signUpAvatar.png'
 import wave from '../assets/wave.jpg'
+import { signup } from '../server';
 
 const SignUp=()=>{
-//     const [Value, setValue] = useState({
-//         FirstName:'',
-//         LastName:'',
-//         Email:'',
-//         Password:'',
-//     });
-// const changes=e=>{
-//     setValue({...Value,[e.target.name]:e.target.value})
-//     console.log(Value)
-// }
+	const navigate = useNavigate()
+    const [Value, setValue] = useState({
+        FirstName:'',
+        LastName:'',
+        Email:'',
+        Password:'',
+    });
+	const changes=e=>{
+		setValue({...Value,[e.target.name]:e.target.value})
+		console.log(Value)
+	}
 
+
+	const handleSignup = (e) => {
+        e.preventDefault()
+        const res = signup(Value);
+        if(res === false){
+            alert("Username already exists")
+            return
+        }
+        res && navigate('/login')
+    }
 
 // const handleSignup=()=>{
-    // fetch('http://localhost:3000/register',{
-    //   method:'POST',
-    //   headers:{
-    //     'Content-type':'application/json'
-    //   },
-    //   body:JSON.stringify(input)
-    // }).then(()=>{
-    //   console.log('CHAL gya')
-    //   navigate('/login')
-
-    // }).catch((err)=>{
-    //   console.log(err,"errr")
-    // })
+//     fetch('http://localhost:5090/signup',{
+//       method:'POST',
+//       headers:{
+//         'Content-type':'application/json'
+//       },
+//       body:JSON.stringify(Value)
+//     }).then(()=>{
+//       console.log('CHAL gya')
+//       navigate('/login')
+//     }).catch((err)=>{
+//       console.log(err,"errr")
+//     })
 //    }
 const inputs = document.querySelectorAll(".input");
 
@@ -84,7 +95,7 @@ inputs.forEach(input => {
         <img src={signUpImage} alt='img' />
 		</div>
 		<div className="login-content">
-			<form action="index.html" className='formm'>
+			<form className='formm' onSubmit={handleSignup}>
             <img src={signUpAvatar} alt='img' />
 				{/* <h3 className="title">Welcome</h3> */}
            		<div className="input-div one">
@@ -93,7 +104,7 @@ inputs.forEach(input => {
            		    </div>
            		   <div className="div">
            		   		{/* <h5>Username</h5> */}
-           		   		<input type="text" className="input" placeholder="First Name"/>
+           		   		<input type="text" className="input" name='FirstName' onChange={changes} placeholder="First Name"/>
            		   </div>
            		</div>
                    <div className="input-div one">
@@ -102,7 +113,7 @@ inputs.forEach(input => {
            		    </div>
            		   <div className="div">
            		   		{/* <h5>Username</h5> */}
-           		   		<input type="text" className="input" placeholder="Last Name"/>
+           		   		<input type="text" className="input" name='LastName' onChange={changes} placeholder="Last Name"/>
            		   </div>
            		</div>
                    <div className="input-div one">
@@ -111,7 +122,7 @@ inputs.forEach(input => {
            		    </div>
            		   <div className="div">
            		   		{/* <h5>Username</h5> */}
-           		   		<input type="text" className="input" placeholder="Email"/>
+           		   		<input type="text" className="input" name='Email' onChange={changes} placeholder="Email"/>
            		   </div>
            		</div>
            		<div className="input-div pass">
@@ -120,12 +131,13 @@ inputs.forEach(input => {
            		   </div>
            		   <div className="div">
            		    	{/* <h5>Password</h5> */}
-           		    	<input type="password" className="input" placeholder="Password"/>
+           		    	<input type="password" className="input" name='Password' onChange={changes} placeholder="Password"/>
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
             	<input type="submit" className="btnSign" value="Sign Up"/>
             </form>
+			<p >Already have an account? <Link to="/login">LogIn</Link></p>
         </div>
     </div>
 	

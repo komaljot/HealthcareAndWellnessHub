@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import './SignUp.css';
 import loginP from '../assets/loginP.png'
 import signUpAvatar from '../assets/signUpAvatar.png'
 import wave from '../assets/wave.jpg'
-
-
-
+import { login,setToken } from "../server";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../utils/AuthProvider";
 
 const Login=()=>{
-//    const [initial, setInitital] = useState({
-//     Username:'',
-//     Password:''
-//    });
-// const changeHandler=e=>{
-//     setInitital({...initial,[e.target.name]:e.target.value})
-//     console.log(initial)
-// }
+	const navigate = useNavigate()
+	const [initial, setInitital] = useState({
+		Email:'',
+		Password:''
+	});
+	const {setAuth,setCurrUser} = useContext(AuthContext)
+const changeHandler=e=>{
+    setInitital({...initial,[e.target.name]:e.target.value})
+    console.log(initial)
+}
+
+const handleLogin=async (e)=>{
+	e.preventDefault()
+        const res = await login(initial);
+        console.log("Response : ",res)
+        setToken(res.token)
+        console.log(localStorage.getItem('authToken'))
+        setAuth(true)
+        setCurrUser(res.user)
+        res && navigate('/main')
+}
+
 const inputs = document.querySelectorAll(".input");
 
 
@@ -59,7 +73,7 @@ inputs.forEach(input => {
         <div className="containerkavya">
 		
 		<div className="login-content">
-			<form action="index.html" className="formm">
+			<form onSubmit={handleLogin} className="formm">
 				<img src={signUpAvatar} alt="img"/>
 				<h3 className="title">Welcome</h3>
            		<div className="input-div one">
@@ -68,7 +82,7 @@ inputs.forEach(input => {
            		   </div>
            		   <div className="div">
            		   		{/* <h5>Username</h5> */}
-           		   		<input type="text" className="input" placeholder="Username"/>
+           		   		<input type="email" className="input" onChange={changeHandler} placeholder="Email"/>
            		   </div>
            		</div>
            		<div className="input-div pass">
@@ -77,7 +91,7 @@ inputs.forEach(input => {
            		   </div>
            		   <div className="div">
            		    	{/* <h5>Password</h5> */}
-           		    	<input type="password" className="input" placeholder="Password"/>
+           		    	<input type="password" className="input" onChange={changeHandler} placeholder="Password"/>
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>
