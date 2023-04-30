@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
 
     const getAuth= async ()=>{
         const {authStatus, user,err} = await verifyAuth()
+        console.log('everythins fine')
         console.log(err? err.message : 'no error')
         if(authStatus){
             setAuth(true)

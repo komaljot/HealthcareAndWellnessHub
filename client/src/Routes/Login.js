@@ -14,7 +14,7 @@ const Login=()=>{
 		Email:'',
 		Password:''
 	});
-	const {setAuth,setCurrUser} = useContext(AuthContext)
+	const {auth,setAuth,setCurrUser} = useContext(AuthContext)
 const changeHandler=e=>{
     setInitital({...initial,[e.target.name]:e.target.value})
     console.log(initial)
@@ -22,13 +22,14 @@ const changeHandler=e=>{
 
 const handleLogin=async (e)=>{
 	e.preventDefault()
+	console.log(initial)
         const res = await login(initial);
         console.log("Response : ",res)
         setToken(res.token)
-        console.log(localStorage.getItem('authToken'))
         setAuth(true)
-        setCurrUser(res.user)
-        res && navigate('/main')
+        setCurrUser(res.userData)
+		console.log(auth)
+        res && navigate('/')
 }
 
 const inputs = document.querySelectorAll(".input");
@@ -82,7 +83,7 @@ inputs.forEach(input => {
            		   </div>
            		   <div className="div">
            		   		{/* <h5>Username</h5> */}
-           		   		<input type="email" className="input" onChange={changeHandler} placeholder="Email"/>
+           		   		<input type="email" className="input" name="Email" onChange={changeHandler} placeholder="Email"/>
            		   </div>
            		</div>
            		<div className="input-div pass">
@@ -91,7 +92,7 @@ inputs.forEach(input => {
            		   </div>
            		   <div className="div">
            		    	{/* <h5>Password</h5> */}
-           		    	<input type="password" className="input" onChange={changeHandler} placeholder="Password"/>
+           		    	<input type="password" className="input" name="Password" onChange={changeHandler} placeholder="Password"/>
             	   </div>
             	</div>
             	<a href="#">Forgot Password?</a>

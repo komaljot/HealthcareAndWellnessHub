@@ -88,31 +88,31 @@ export default function BookAppt() {
                 </tr>
                 <tr className='p-5'>
                   <td>
-                    <select>
+                    <select name="monday">
                       <option>11:00am</option>
                       <option>12:00pm</option>
                     </select>
                   </td>
                   <td>
-                    <select>
+                    <select name="tuesday">
                       <option>11:00am</option>
                       <option>12:00pm</option>
                     </select>
                   </td>
                   <td>
-                    <select>
+                    <select name="wednesday">
                       <option>11:00am</option>
                       <option>12:00pm</option>
                     </select>
                   </td>
                   <td>
-                    <select>
+                    <select name="thursday">
                       <option>11:00am</option>
                       <option>12:00pm</option>
                     </select>
                   </td>
                   <td>
-                    <select>
+                    <select name="friday">
                       <option>11:00am</option>
                       <option>12:00pm</option>
                     </select>

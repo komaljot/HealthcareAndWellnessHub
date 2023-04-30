@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css'
+import AuthContext from '../utils/AuthProvider'
 
 export default function Header() {
+    const {auth} = useContext(AuthContext)
+    console.log(auth)
   return (
     <>
       <nav className="navbar navbar-expand-lg ms-auto header-nav">
@@ -25,8 +28,22 @@ export default function Header() {
                             <Link className="nav-link nav-tab" aria-current="page" to="/appointment">Book an Appointment</Link>
                         </li>
                         <li className="nav-item mx-5">
-                            <Link className="nav-link nav-tab" to="/login">Login</Link>
+                            <Link className="nav-link nav-tab" aria-current="page" to="/profile">Profile</Link>
                         </li>
+                        
+                        {
+                            auth
+                            ? (<li className="nav-item mx-5">
+                                    <Link className="nav-link btn btn-warning nav-tab">Logout</Link>
+                                </li>
+                                )
+                            : (
+                                <li className="nav-item mx-5">
+                                    <Link className="nav-link nav-tab" to="/login">Login</Link>
+                                </li>
+                        )
+                        }
+                        
                         <li className="nav-item mx-5">
                             <Link className="nav-link nav-tab" to="/signup">Signup</Link>
                         </li>

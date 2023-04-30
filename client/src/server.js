@@ -30,4 +30,10 @@ const login = async (newObj) => {
     return req.data
 }
 
-export {signup,login,setToken,verifyAuth}
+export {
+    signup,
+    login,
+    verifyAuth,
+    setToken,
+    token
+}
