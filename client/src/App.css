@@ -134,7 +134,10 @@
 }
 
 .form-appt{
-    margin-left: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .login-bg{
@@ -145,6 +148,11 @@
 .appt-bg{
     background-color: #E0F2F1;
     overflow-x: hidden;
+}
+
+.appt-img{
+    position: absolute;
+    left: 0;
 }
 
 .user-div{
