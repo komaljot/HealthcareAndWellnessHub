@@ -6,6 +6,7 @@ import Signup from './Routes/Signup'
 import Home from './Routes/Home'
 import AboutUs from './Routes/AboutUs'
 import ContactUs from './Routes/ContactUs/ContactUs'
+import Profile from './Routes/Profile'
 
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         <Route path='/appointment' element={<BookAppt />}></Route>
         <Route path='/about' element={<AboutUs />}></Route>
         <Route path='/contact' element={<ContactUs />}></Route>
+        <Route path='/profile' element={<Profile />}></Route>
       </Routes>
     </div>
   )

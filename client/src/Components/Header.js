@@ -1,11 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css'
 import AuthContext from '../utils/AuthProvider'
 
 export default function Header() {
-    const {auth} = useContext(AuthContext)
+    const {auth,setAuth} = useContext(AuthContext)
     console.log(auth)
+    const handleLogout=()=>{
+        localStorage.clear()
+        setAuth(false)
+    }
+    useEffect(()=>{},[auth])
   return (
     <>
       <nav className="navbar navbar-expand-lg ms-auto header-nav">
@@ -17,9 +22,6 @@ export default function Header() {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item mx-5">
                             <Link className="nav-link active nav-tab" aria-current="page" to='/'>Home</Link>
-                        </li>
-                        <li className="nav-item mx-5">
-                            <Link className="nav-link nav-tab" aria-current="page" to="/about">About Us</Link>
                         </li>
                         <li className="nav-item mx-5">
                             <Link className="nav-link nav-tab" aria-current="page" to="/contact">Contact Us</Link>
@@ -34,19 +36,21 @@ export default function Header() {
                         {
                             auth
                             ? (<li className="nav-item mx-5">
-                                    <Link className="nav-link btn btn-warning nav-tab">Logout</Link>
+                                    <button className="nav-link btn btn-outline-danger nav-tab" onClick={handleLogout}>Logout</button>
                                 </li>
                                 )
                             : (
+                                <>
                                 <li className="nav-item mx-5">
                                     <Link className="nav-link nav-tab" to="/login">Login</Link>
                                 </li>
+                                <li className="nav-item mx-5">
+                                    <Link className="nav-link nav-tab" to="/signup">Signup</Link>
+                                </li>
+                                </>
                         )
                         }
                         
-                        <li className="nav-item mx-5">
-                            <Link className="nav-link nav-tab" to="/signup">Signup</Link>
-                        </li>
                     </ul>
                 </div>
             </div>

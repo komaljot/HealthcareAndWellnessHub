@@ -6,6 +6,7 @@ import signUpImage from '../assets/signUpImage.png'
 import signUpAvatar from '../assets/signUpAvatar.png'
 import wave from '../assets/wave.jpg'
 import { signup } from '../server';
+import Header from '../Components/Header';
 
 const SignUp=()=>{
 	const navigate = useNavigate()
@@ -88,6 +89,8 @@ inputs.forEach(input => {
 
         //   <Link to="/login">Login Page </Link>
         // </div>
+		<>
+		<Header />
 		<div>
 			<img className="wave" src={wave}/>   
         <div className="containerkavya">
@@ -142,6 +145,7 @@ inputs.forEach(input => {
     </div>
 	
 	</div>
+	</>
     )
 }
 export default SignUp

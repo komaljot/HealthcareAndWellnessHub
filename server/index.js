@@ -9,6 +9,7 @@ const generateAuthToken = require("./jwtTokenGen")
 
 // const jwt = require('jsonwebtoken')
 const authorization = require("./utils/middleware")
+const Appointment = require("./models/appoint")
 
 const app = express()
 
@@ -85,6 +86,28 @@ app.get('/login',authorization, async (req,res,next)=>{
     }
     else{
         res.json({authStatus,user,err})
+    }
+})
+
+app.post('/bookAppt', async (req,res)=>{
+    const apptData = req.body
+    console.log(apptData)
+    const appt = await Appointment.findOne({Email:apptData.Email})
+    const newAppt = new Appointment(apptData)
+    await newAppt.save()
+    res.send('Booked Appointment Successfully')
+})
+
+app.post('/showAppt',authorization,async (req,res)=>{
+    const currUser = req.authData.user
+    console.log(currUser)
+    const prevAppt = await Appointment.findOne({Email: currUser.Email})
+    console.log("I need this--->",prevAppt)
+    if(prevAppt!== null){
+        res.json(prevAppt)
+    }
+    else{
+        res.send(false)
     }
 })
 

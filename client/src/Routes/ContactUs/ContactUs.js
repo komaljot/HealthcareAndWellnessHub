@@ -7,6 +7,7 @@ import fb from '../../assets/fb.png';
 import inst from '../../assets/inst.png';
 import li from '../../assets/li.png';
 import tw from '../../assets/tw.png';
+import Header from "../../Components/Header";
 
 const ContactUs = () => {
     const inputs = document.querySelectorAll(".input");
@@ -29,6 +30,7 @@ inputs.forEach((input) => {
 });
   return (
     <div>
+        <Header />
         <div className="containerr">
       <span className="big-circle"></span>
       <img src="img/shape.png" className="square" alt="" />

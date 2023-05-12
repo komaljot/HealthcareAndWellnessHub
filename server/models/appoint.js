@@ -21,11 +21,11 @@ const userSchema = mongoose.Schema({
         type:String,
         require:true
     },
-    AppointmentDay:{
+    AppointmentTime:{
         type:String,
         require:true
     }
 })
 
-const User = mongoose.model('User',userSchema)
-module.exports=User
+const Appointment = mongoose.model('Appointment',userSchema)
+module.exports=Appointment

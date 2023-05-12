@@ -30,10 +30,22 @@ const login = async (newObj) => {
     return req.data
 }
 
+const bookAppt = async (newObj)=>{
+    const req = await axios.post(URL+'bookAppt',newObj)
+    return req.data
+}
+
+const showAppt = async (newObj)=>{
+    const req=await axios.post(URL+'showAppt',newObj, {headers: {Authorization : token }})
+    return req.data
+}
+
 export {
     signup,
     login,
     verifyAuth,
     setToken,
+    bookAppt,
+    showAppt,
     token
 }

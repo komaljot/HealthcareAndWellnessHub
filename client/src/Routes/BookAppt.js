@@ -1,27 +1,60 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import  'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
+import { bookAppt } from '../server';
+import AuthContext from '../utils/AuthProvider';
+import apptIcon from '../assets/appt-icon.png'
 
 export default function BookAppt() {
+
+  const {currUser} = useContext(AuthContext)
+  const [fields, setFields] = useState({
+                              FirstName:'',
+                              LastName:'',
+                              Email:'',
+                              ContactNo:'',
+                              AppointmentDate:'',
+                              AppointmentTime:''
+                          })
+  const handleChange=(e)=>{
+    setFields({...fields,[e.target.name]:e.target.value})
+  }
+  useEffect(()=>{
+    currUser && setFields({...fields,Email:currUser.Email})
+  },[currUser])
+  const handleSubmit=async (e)=>{
+    e.preventDefault()
+    console.log(fields)
+    const res=await bookAppt(fields)
+    console.log(res)
+  }
+
   return (
     <>
+      <Header />
       <div className='appt-bg'>
         <div className=' head-appt'>
-          <h1 className='p-5 text-center'>Book Your Appointment</h1>
+          <h1 className='p-5 text-center'><img src={apptIcon} alt="" /> Book Your Appointment</h1>
         </div>
-        <form className='form-appt'>
+        <form className='form-appt' onSubmit={handleSubmit}>
           <h3 className='m-2'>Fill Patient Details : </h3>
           <fieldset>
             <div className="form-group row m-2">
-              <label for="name" className="col-sm-2 col-form-label">Name <span className='text-danger'>*</span></label>
+              <label htmlFor="FirstName" className="col-sm-2 col-form-label">First Name <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
-                <input type="text" className="form-control" id="name" placeholder="Enter Your Name" required />
+                <input type="text" className="form-control" id="FirstName" name="FirstName" onChange={handleChange} placeholder="Enter Your First Name" required />
               </div>
             </div>
             <div className="form-group row m-2">
-              <label for="age" className="col-sm-2 col-form-label">Age <span className='text-danger'>*</span></label>
+              <label htmlFor="LastName" className="col-sm-2 col-form-label">Last Name <span className='text-danger'>*</span></label>
+              <div className="col-sm-6">
+                <input type="text" className="form-control" id="LastName" name="LastName" onChange={handleChange} placeholder="Enter Your LastName" required />
+              </div>
+            </div>
+            <div className="form-group row m-2">
+              <label htmlFor="age" className="col-sm-2 col-form-label">Age <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
                 <input type="number" className="form-control" id="age" placeholder="Enter Your Age" required />
               </div>
@@ -30,148 +63,77 @@ export default function BookAppt() {
               <label className="col-sm-2 col-form-label">Gender <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
                 <div className="form-check">
-                  <input className="form-check-input" type="radio" name="gender" id="male" value="male" checked />
-                  <label className="form-check-label" for="male">
+                  <input className="form-check-input" type="radio" name="gender" id="male" value="male" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="male">
                     Male
                   </label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="gender" id="female" value="female" />
-                  <label className="form-check-label" for="female">
+                  <label className="form-check-label" htmlFor="female">
                     Female
                   </label>
                 </div>
                 <div className="form-check">
                   <input className="form-check-input" type="radio" name="gender" id="notsaid" value="notsaid" />
-                  <label className="form-check-label" for="notsaid">
+                  <label className="form-check-label" htmlFor="notsaid">
                     Prefer Not to say
                   </label>
                 </div>
               </div>
             </div>
             <div className="form-group row m-2">
-              <label for="address" className="col-sm-2 col-form-label">Address <span className='text-danger'>*</span></label>
+              <label htmlFor="address" className="col-sm-2 col-form-label">Address <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
                 <input type="text" className="form-control" id="address" placeholder="Address" required />
               </div>
             </div>
             <div className="form-group row m-2">
-              <label for="email" className="col-sm-2 col-form-label">Email <span className='text-danger'>*</span></label>
+              <label htmlFor="ContactNo" className="col-sm-2 col-form-label">Contact number <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
-                <input type="email" className="form-control" id="email" placeholder="Email" required />
+                <input type="tel" className="form-control" id="ContactNo" name="ContactNo" onChange={handleChange} placeholder="Contact Number" required />
               </div>
             </div>
             <div className="form-group row m-2">
-              <label for="phone" className="col-sm-2 col-form-label">Contact number <span className='text-danger'>*</span></label>
+              <label htmlFor="AppointmentDate" className="col-sm-2 col-form-label">Appointment Date <span className='text-danger'>*</span></label>
               <div className="col-sm-6">
-                <input type="tel" className="form-control" id="email" placeholder="Contact Number" required />
+                <input type="date" className="form-control" id="AppointmentDate" name="AppointmentDate" onChange={handleChange} required />
               </div>
             </div>
-            <div className="form-group row my-3">
-              <label><h3>Schedule Available for this week Appointment</h3></label>
-              <table className='p-5'>
-                <tr className='p-5'>
-                  <th>Monday</th>
-                  <th>Tuesday</th>
-                  <th>Wednesday</th>
-                  <th>Thursday</th>
-                  <th>Friday</th>
-                  <th>Saturday</th>
-                </tr>
-                <tr className='p-5'>
-                  <td>Morning : </td>
-                  <td>Morning : </td>
-                  <td>Morning : </td>
-                  <td>Morning : </td>
-                  <td>Morning : </td>
-                  <td>Morning : </td>
-                </tr>
-                <tr className='p-5'>
-                  <td>
-                    <select name="monday">
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select name="tuesday">
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select name="wednesday">
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select name="thursday">
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select name="friday">
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>11:00am</option>
-                      <option>12:00pm</option>
-                    </select>
-                  </td>
-                </tr>
-                <tr className='p-5'>
-                  <td>Evening : </td>
-                </tr>
-                <tr className='p-5'>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select>
-                      <option>5:00pm</option>
-                      <option>6:00pm</option>
-                      <option>7:00pm</option>
-                    </select>
-                  </td>
-                </tr>
-              </table>
+            <div className="form-group row m-2">
+              <h5>Slots Available : </h5>
+              <div>
+                <div className="form-check form-check-inline">
+                  <input className="form-check-input" type="radio" name="AppointmentTime" id="one" value="1100" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="one">
+                    11:00 am
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input className="form-check-input" type="radio" name="AppointmentTime" id="two" value="1200" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="two">
+                    12:00 pm
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input className="form-check-input" type="radio" name="AppointmentTime" id="three" value="1700" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="three">
+                    5:00 pm
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input className="form-check-input" type="radio" name="AppointmentTime" id="four" value="1900" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="four">
+                    7:00 pm
+                  </label>
+                </div>
+                <div className="form-check form-check-inline">
+                  <input className="form-check-input" type="radio" name="AppointmentTime" id="five" value="1930" onChange={handleChange} />
+                  <label className="form-check-label" htmlFor="five">
+                    7:30 pm
+                  </label>
+                </div>
+              </div>
             </div>
           </fieldset>
           <div className="form-group row m-2 my-3">

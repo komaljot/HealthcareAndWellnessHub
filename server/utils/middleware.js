@@ -4,9 +4,9 @@ const User = require('../models/users')
 
 const authorization = (req,res,next) => {
     const authHeader = req.get('Authorization')
-    console.log("authHeader : ",authHeader)
+    // console.log("authHeader : ",authHeader)
     const token  = authHeader && authHeader.split(' ')[1]
-    console.log("token : ",token)
+    // console.log("token : ",token)
     if(token === null){
         res.json({authStatus:false, user:null,err:"There is no token"})
         return
