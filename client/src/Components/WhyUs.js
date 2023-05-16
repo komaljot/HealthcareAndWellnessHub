@@ -13,7 +13,9 @@ export default function WhyUs() {
             <div className='row m-5 p-5'>
                 <div className='col-md-6 border p-5 sec2-left'>
                     <h1 className='text-center sec-2-head'>What makes <br></br>us unique ?</h1>
-                    <img src={sec2img} alt='img' height="50%" />
+                    <div className='d-none d-lg-block'>
+                        <img src={sec2img} alt='img' width="100%"  />
+                    </div>
                 </div>
                 <div className='col-md-6'>
                     <div>
