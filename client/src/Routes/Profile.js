@@ -4,6 +4,7 @@ import Header from '../Components/Header'
 import userImg from '../assets/user.jpg'
 import { Link } from 'react-router-dom'
 import { showAppt } from '../server'
+import Footer from '../Components/Footer'
 
 export default function Profile() {
   const [prevAppt,setPrevAppt] = useState('')
@@ -35,9 +36,9 @@ export default function Profile() {
                 (
                   <div className='row m-5 p-3 justify-content-around'>
                     <div className='col-md-4 user-div'>
-                      <img src={userImg} alt='' height="300px" />
+                      <img src={userImg} alt='' width="70%" />
                     </div>
-                    <div className='col-md-6 m-3'>
+                    <div className='col-md-6 m-3 shadow p-3 bg-success bg-opacity-10'>
                       <h1 className='color-head'>My Profile</h1>
                       <h2 className='color-head'>Name : {currUser.FirstName} {currUser.LastName}</h2>
                       <h2 className='color-head'>Email : {currUser.Email} </h2>
@@ -57,6 +58,7 @@ export default function Profile() {
             } 
             
           </div>
+          <Footer />
     </>
   )
 }

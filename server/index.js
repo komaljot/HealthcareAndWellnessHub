@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const cors=require('cors')
 const generateAuthToken = require("./jwtTokenGen")
+const nodemailer=require('nodemailer')
+const xoauth2 = require('xoauth2')
 
 // const jwt = require('jsonwebtoken')
 const authorization = require("./utils/middleware")
@@ -98,6 +100,8 @@ app.post('/bookAppt', async (req,res)=>{
     res.send('Booked Appointment Successfully')
 })
 
+
+
 app.post('/showAppt',authorization,async (req,res)=>{
     const currUser = req.authData.user
     console.log(currUser)
@@ -137,6 +141,34 @@ app.post('/showAppt',authorization,async (req,res)=>{
 //         })
 //     }
 // })
+
+app.post('/sendMsg' , async (req,res) => {
+    console.log(req);
+    let transporter = await nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'healthcarewellnesshub@gmail.com', 
+            pass:'abc123xyz!@#'
+            }
+        });
+        let mailOptions = {
+            from: req.body.email,
+            to: 'healthcarewellnesshub@gmail.com',
+            subject: `Message from ${req.body.email}: ${req.body.subject}`,
+            text: req.body.message
+        };
+        transporter.sendMail(mailOptions, function(e, r) {
+            if (e) {
+              console.log(e);
+              res.send(false)
+            }
+            else {
+              console.log(r);
+              res.send(true)
+            }
+            transporter.close();
+            });
+})
 
 app.listen(5090,()=>{
     console.log('Server running on port 5090')

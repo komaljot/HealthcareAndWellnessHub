@@ -56,19 +56,6 @@ inputs.forEach(input => {
 
 
     return(
-        // <div classNameName="text-center my-5">
-        //     <h2 className="my-5">Login</h2>
-        //     <br />
-        //     <form action="">
-        //     <input type="text" placeholder="Username" onChange={changeHandler} name='Username'/>
-        //     <br /><br />
-        //     <input type="password" placeholder="Password" onChange={changeHandler} name='Password'/>
-        //     <br /><br />
-        //     </form>
-        //     <button>Login</button>
-        //     <br /><br />
-        //     <Link to="/signup">Sign Up Page </Link>
-        // </div>
 		<>
        <div>
 	   <Header />

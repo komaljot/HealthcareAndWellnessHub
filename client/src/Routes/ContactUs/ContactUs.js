@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './ContactUs.css'
 import email from '../../assets/email.jpeg';
 import location from '../../assets/map.jpeg';
@@ -8,8 +8,25 @@ import inst from '../../assets/inst.png';
 import li from '../../assets/li.png';
 import tw from '../../assets/tw.png';
 import Header from "../../Components/Header";
+import Footer from "../../Components/Footer";
+import { sendMsg } from "../../server";
 
 const ContactUs = () => {
+    const [formData, setFormData] = useState({
+      name:'',
+      email:'',
+      subject:'',
+      message:''
+    })
+
+    const handleChange=(e)=>{
+      setFormData({...formData,[e.target.name]:e.target.value})
+    }
+    const sendMessage=(e)=>{
+      e.preventDefault()
+      const res = sendMsg(formData)
+      console.log(res)
+    }
     const inputs = document.querySelectorAll(".input");
 
 function focusFunc() {
@@ -48,7 +65,7 @@ inputs.forEach((input) => {
             </div>
             <div className="information">
               <img className="iconn" src={email} alt='img'/>
-              <p>gurunanakcares@gmail.com</p>
+              <p>healthcarewellnesshub@gmail.com</p>
             </div>
             <div className="information">
               <img className="iconn" src={phone} alt='img'/>
@@ -80,33 +97,26 @@ inputs.forEach((input) => {
           <span className="circle one"></span>
           <span className="circle two"></span>
 
-          <form action="index.html" autocomplete="off">
+          <form onSubmit={sendMessage} autocomplete="off">
             <h3 className="title">Contact us</h3>
             <div className="input-container">
-              <input type="text" name="name" className="input" />
-              <label for="">Username</label>
-              <span>Username</span>
+              <input type="text" name="name" id="name" className="input" placeholder="Name" onChange={handleChange} required />
             </div>
             <div className="input-container">
-              <input type="email" name="email" className="input" />
-              <label for="">Email</label>
-              <span>Email</span>
+              <input type="email" name="email" className="input" placeholder="Email" onChange={handleChange} required />
             </div>
             <div className="input-container">
-              <input type="tel" name="phone" className="input" />
-              <label for="">Phone</label>
-              <span>Phone</span>
+              <input type="text" name="subject" id="subject" className="input" placeholder="Subject" onChange={handleChange} required />
             </div>
             <div className="input-container textarea">
-              <textarea name="message" className="input"></textarea>
-              <label for="">Message</label>
-              <span>Message</span>
+              <textarea name="message" className="input" id="msg" required placeholder="Message" onChange={handleChange}></textarea>
             </div>
             <input type="submit" value="Send" className="btnn" />
           </form>
         </div>
       </div>
     </div>
+    <Footer />
     </div>
   )
 }

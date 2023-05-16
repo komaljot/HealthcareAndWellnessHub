@@ -40,6 +40,10 @@ const showAppt = async (newObj)=>{
     return req.data
 }
 
+const sendMsg = async (newObj)=>{
+    const req=await axios.post(URL+'sendMsg',newObj);
+}
+
 export {
     signup,
     login,
@@ -47,5 +51,6 @@ export {
     setToken,
     bookAppt,
     showAppt,
+    sendMsg,
     token
 }
