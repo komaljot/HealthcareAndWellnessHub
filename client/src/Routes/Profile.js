@@ -18,7 +18,7 @@ export default function Profile() {
   },[])
   const WithoutLogin=()=>{
     return (
-          <div className='row m-5'>
+          <div className='row m-5' style={{height:'35vh'}}>
               <div className='col-md-6'>
                 <h1>Kindly Login to see your profile</h1>
               </div>
@@ -34,6 +34,7 @@ export default function Profile() {
             {
               (auth)? 
                 (
+                  <>
                   <div className='row m-5 p-3 justify-content-around'>
                     <div className='col-md-4 user-div'>
                       <img src={userImg} alt='' width="70%" />
@@ -54,6 +55,16 @@ export default function Profile() {
                       
                     </div>
                   </div>
+                  <div className='col-md-6'>
+                    <div>
+                      <h2>Previous Prescriptions: </h2>
+                      No Previous Prescriptions
+                    </div>
+                  </div>
+                  <div className='col-md-6'>
+                    <h4>Appointment with Doctors: </h4>
+                  </div>
+                  </>
                 ) : <WithoutLogin />
             } 
             

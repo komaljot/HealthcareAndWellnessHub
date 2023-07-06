@@ -150,24 +150,24 @@ app.post('/sendMsg' , async (req,res) => {
             user: 'healthcarewellnesshub@gmail.com', 
             pass:'abc123xyz!@#'
             }
+    });
+    let mailOptions = {
+        from: 'healthcarewellnesshub@gmail.com',
+        to: 'gurmeharkaur01@gmail.com',
+        subject: `Message from ${req.body.email}: ${req.body.subject}`,
+        text: req.body.message
+    };
+    transporter.sendMail(mailOptions, function(e, r) {
+        if (e) {
+            console.log(e);
+            res.send(false)
+        }
+        else {
+            console.log(r);
+            res.send(true)
+        }
+        transporter.close();
         });
-        let mailOptions = {
-            from: req.body.email,
-            to: 'healthcarewellnesshub@gmail.com',
-            subject: `Message from ${req.body.email}: ${req.body.subject}`,
-            text: req.body.message
-        };
-        transporter.sendMail(mailOptions, function(e, r) {
-            if (e) {
-              console.log(e);
-              res.send(false)
-            }
-            else {
-              console.log(r);
-              res.send(true)
-            }
-            transporter.close();
-            });
 })
 
 app.listen(5090,()=>{

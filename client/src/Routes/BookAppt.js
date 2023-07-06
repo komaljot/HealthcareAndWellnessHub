@@ -139,6 +139,17 @@ export default function BookAppt() {
                   </div>
                 </div>
               </div>
+              <div className="form-group row m-2">
+                <h5>Alternate slot : </h5>
+                <label htmlFor="alterDate" className="col-sm-2 col-form-label">Alternate Date</label>
+                <div className="col-sm-6">
+                  <input type="date" className="form-control" id="alterDate" name="alterDate" onChange={handleChange} required />
+                </div>
+                <label>Alternate Time : </label>
+                <div className="col-sm-6">
+                  <input type='time' className='form-control' id='alterTime' name="alterTime" />
+                </div>
+              </div>
             </fieldset>
             <div className="form-group row m-2 my-3">
               <div className="my-3">
